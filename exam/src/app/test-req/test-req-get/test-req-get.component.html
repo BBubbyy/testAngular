@@ -1,0 +1,33 @@
+<div class="input">
+  <input class="input" type="text" placeholder="Search" [(ngModel)]="filterText">
+</div>
+
+<table class="center" *ngIf="(reqlist | filterReq: filterText).length > 0; else noResults">
+  <tbody>
+    <tr class="tr" *ngFor="let req of reqlist | filterReq: filterText;">
+      <div class="item">
+        <div class="list-detail">
+          <div>
+            <h1 class="nameColor">
+              {{req.name.common}}
+            </h1>
+            <h4 style="margin-right: auto;">
+              {{req.capital}}, {{req.region}}
+            </h4>
+          </div>
+          <h3 style="margin-left: auto;    display: flex;
+                    flex-wrap: nowrap;
+                    flex-direction: column;
+                    justify-content: center;">
+            Population <br> {{req.population}}
+          </h3>
+
+        </div>
+      </div>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noResults>
+  <p>No results found for "{{filterText}}".</p>
+</ng-template>
